@@ -109,9 +109,46 @@ public class ZebreExtension {
         /************************************************************************
          *                                                                      *
          * Compléter en ajoutant les contraintes modélisant les phrases 2 à 15  *
+         *
+         * 2. The Englishman lives in the red house.
+         * 3. The Spaniard owns the dog.
+         * 4. Coffee is drunk in the green house.
+         * 5. The Ukrainian drinks tea.
+         * 6. The green house is immediately to the right of the ivory house.
+         * 7. The Old Gold smoker owns snails.
+         * 8. Kools are smoked in the yellow house.
+         * 9. Milk is drunk in the middle house.
+         * 10. The Norwegian lives in the first house.
+         * 11. The man who smokes Chesterfields lives in the house next to the man with the fox.
+         * 12. Kools are smoked in the house next to the house where the horse is kept. [should be "... a house ...",
+         * see discussion below]
+         * 13. The Lucky Strike smoker drinks orange juice.
+         * 14. The Japanese smokes Parliaments.
+         * 15. The Norwegian lives next to the blue house.
          *                                                                      *
          ************************************************************************/
-        
+        int [][] consIsNextTo = new int[][] {{1,2},{2,1},{2,3},{3,2},{3,4},{4,3},{4,5},{5,4}}; // Contrainte A est à côté de B
+        Tuples isNextTo = new Tuples(consIsNextTo,true);	// Tuple à côté
+
+        int [][] consIsNextToR = new int[][] {{5,4},{4,3},{3,2},{2,1}}; // Contrainte A est à droite de B
+        Tuples isNextToR = new Tuples(consIsNextToR,true);	// Tuple à côté à droite de
+
+        model.table(new IntVar[]{eng, red}, tuplesAutorises).post(); // 2.
+        model.table(new IntVar[]{spa, dog}, tuplesAutorises).post(); // 3.
+        model.table(new IntVar[]{cof, gre}, tuplesAutorises).post(); // 4.
+        model.table(new IntVar[]{ukr, tea}, tuplesAutorises).post(); // 5.
+        model.table(new IntVar[]{gre, ivo}, isNextToR).post(); // 6.
+        model.table(new IntVar[]{old, sna}, tuplesAutorises).post(); // 7.
+        model.table(new IntVar[]{koo, yel}, tuplesAutorises).post(); // 8.
+        model.table(new IntVar[]{mil}, new Tuples(new int[][] {{3}}, true)).post(); // 9. Contrainte : <<milk>, [(3)]>
+        model.table(new IntVar[]{nor}, new Tuples(new int[][] {{1}}, true)).post(); // 10. Contrainte : <<norvegian>, [(1)]>
+        model.table(new IntVar[]{che, fox}, isNextTo).post(); // 11.
+        model.table(new IntVar[]{koo, hor}, isNextTo).post(); // 12.
+        model.table(new IntVar[]{luc, ora}, tuplesAutorises).post(); // 13.
+        model.table(new IntVar[]{jap, par}, tuplesAutorises).post(); // 14.
+        model.table(new IntVar[]{nor, blu}, isNextTo).post(); // 15.
+
+
         
         // Affichage du réseau de contraintes créé
         System.out.println("*** Réseau Initial ***");
@@ -124,14 +161,12 @@ public class ZebreExtension {
         	System.out.println(model);
         }
 
-        
-/*        
+
     	// Calcul de toutes les solutions
     	System.out.println("\n\n*** Autres solutions ***");        
         while(model.getSolver().solve()) {    	
             System.out.println("Sol "+ model.getSolver().getSolutionCount()+"\n"+model);
 	    }
-*/	    
  
         
         // Affichage de l'ensemble des caractéristiques de résolution
