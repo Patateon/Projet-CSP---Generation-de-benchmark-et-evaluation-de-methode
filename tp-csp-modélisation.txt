@@ -6,3 +6,18 @@ B-
 C-
 2) On obtient la même unique solution.
 
+D-
+2) Pas de contraintes nécessaires
+3) S'assurer que toutes les variables du tableaux sont différentes
+4) Distance(Ri, Rj)!=Distance(i, j) pour i, j différents.
+5) Faire la 4) pour chaques couples de reines possibles.
+6) 
+	n=1  -> 1
+	n=2  -> 0
+	n=3  -> 0
+	n=4  -> 2
+	n=8  -> 92 
+	n=12 -> 14 200
+	n=16 -> ??? Prends trop de temps car mauvaise complexité (backtrack)
+7) Croissance exponentielle du nombre de solution, (y a ptet moyen de trouver le k et le n).
+Compléxité en temps non polynomial prends du temps très vite.
