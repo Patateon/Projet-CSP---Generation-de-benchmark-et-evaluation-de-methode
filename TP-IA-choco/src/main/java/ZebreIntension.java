@@ -112,13 +112,11 @@ public class ZebreIntension {
         }
 
 
-        /*
         // Calcul de toutes les solutions
         System.out.println("\n\n*** Autres solutions ***");
         while(model.getSolver().solve()) {
             System.out.println("Sol "+ model.getSolver().getSolutionCount()+"\n"+model);
         }
-        */
 
         // Affichage de l'ensemble des caractéristiques de résolution
         System.out.println("\n\n*** Bilan ***");
