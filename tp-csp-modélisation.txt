@@ -1,0 +1,8 @@
+TP CSP Modélisation :
+B-
+3) Water = 1, Zebra = 5, ... . Toutes les contraintes sont respectés.
+4) On obtient qu'une seule solution, elle est correcte.
+
+C-
+2) On obtient la même unique solution.
+
