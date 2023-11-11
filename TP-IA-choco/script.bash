@@ -1,6 +1,8 @@
 #!/bin/bash
 
-for (( i = 10 ; i <= 110; i+=10 )) 
+rm -f csp/*
+
+  for (( i = 750 ; i >= 50; i-=50 ))
 do
-./urbcsp 100 300 10 $i 100 > csp$i.txt
+./urbcsp 100 100 100 $i 10 > csp/csp$i.txt
 done
